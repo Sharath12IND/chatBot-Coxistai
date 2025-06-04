@@ -15,13 +15,13 @@ class PDFInputHandler:
             with fitz.open(pdf_path) as doc:
                 text = "\n".join(page.get_text() for page in doc)
             if len(text.strip()) >= 50:
-                logging.info("✅ Extracted text using PyMuPDF.")
+                logging.info("Extracted text using PyMuPDF.")
                 return text.strip(), True
         except Exception as e:
             logging.warning(f"Text-based extraction failed: {e}")
 
         try:
-            logging.info("🔁 Trying OCR...")
+            logging.info("Trying OCR...")
             pages = convert_from_path(pdf_path)
             text = ""
             for i, page in enumerate(pages):
@@ -50,7 +50,7 @@ def extract_text_from_file(file_path):
     elif file_path.endswith(".docx"):
         handler = DocxInputHandler()
     else:
-        logging.error("❌ Unsupported file format.")
+        logging.error("Unsupported file format.")
         return None, False
 
     return handler.extract_text(file_path)
@@ -63,17 +63,17 @@ def main():
 
     file_path = sys.argv[1]
     if not os.path.exists(file_path):
-        print(f"❌ File not found: {file_path}")
+        print(f"File not found: {file_path}")
         return
 
     text, success = extract_text_from_file(file_path)
 
     if success:
-        print(f"\n✅ Extracted {len(text)} characters.")
-        print("📄 First 500 chars preview:\n")
+        print(f"\nExtracted {len(text)} characters.")
+        print("First 500 chars preview:\n")
         print(text[:500])
     else:
-        print("❌ Extraction failed.")
+        print("Extraction failed.")
 
 
 if __name__ == "__main__":
