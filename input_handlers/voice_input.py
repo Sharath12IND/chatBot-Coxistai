@@ -19,7 +19,6 @@ def transcribe_audio(file_path):
         "transcription": result["text"]
     }
 
-# Run it
 if __name__ == "__main__":
     input_file = "hindi_sample.mp3"
     output = transcribe_audio(input_file)

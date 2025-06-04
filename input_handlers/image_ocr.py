@@ -1,10 +1,8 @@
-# core/input_handlers/image_ocr.py
 
 from PIL import Image
 import pytesseract
 import os
 
-# Optional: Set path to tesseract executable if not in PATH (Windows users)
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
 def extract_text_from_image(image_path, lang='eng'):
@@ -19,5 +17,4 @@ def extract_text_from_image(image_path, lang='eng'):
 if __name__ == "__main__":
     input_file = "image.png"
     output = extract_text_from_image(input_file)
-    # print("Detected Language:", output["language_code"])
     print("Transcription:", output)
